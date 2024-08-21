@@ -21,7 +21,7 @@
 Задача оценивается в 4 балла, плюс возможность получить два дополнительных.
 
 ## [Бор](https://github.com/Hard-Pacific/new_second_semester/tree/Trie)
-Реализовать в виде класса структуру данных "Бор" (http://neerc.ifmo.ru/wiki/index.php?title=%D0%91%D0%BE%D1%80)
+Реализовать в виде класса структуру данных "Бор" ([ifmo wiki](http://neerc.ifmo.ru/wiki/index.php?title=%D0%91%D0%BE%D1%80))
 
 Должны быть поддержаны следующие методы:
 
