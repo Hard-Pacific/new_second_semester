@@ -1,46 +1,10 @@
-﻿namespace BWT;
+﻿namespace BurrowsWheelerTransform;
 
 using System;
 using System.Text;
+using Rotation;
 
-/// <summary>
-/// Compares rotations of a string based on lexicographical order.
-/// Used for sorting rotations in BWT encoding.
-/// </summary>
-class RotationsComparer : IComparer<int>
-{
-    private string str;
-
-    public RotationsComparer(string str)
-    {
-        this.str = str;
-    }
-    /// <summary>
-    /// Compares two rotations of the string.
-    /// </summary>
-    /// <param name="first">The index of the first rotation.</param>
-    /// <param name="second">The index of the second rotation.</param>
-    /// <returns>1 if the first rotation is lexicographically greater than the second,
-    /// -1 if the first rotation is lexicographically less than the second,
-    /// 0 if the rotations are equal.</returns>
-    public int Compare(int first, int second)
-    {
-        for (var i = 0; i < str.Length; ++i)
-        {
-            if (str[(first + i) % str.Length] > str[(second + i) % str.Length])
-            {
-                return 1;
-            }
-            else if (str[(first + i) % str.Length] < str[(second + i) % str.Length])
-            {
-                return -1;
-            }
-        }
-        return 0;
-    }
-}
-
-public class Program
+public class Transform
 {
     const int AlphabetSize = 65536;
 
@@ -49,8 +13,7 @@ public class Program
     /// </summary>
     /// <param name="encodingString">The original string to encode.</param>
     /// <returns>A tuple containing the BWT-encoded string and the position of the last original string's symbol.</returns>
-
-    public static (string, int) Encoder(string encodingString)
+    public static (string, int) Encode(string encodingString)
     {
         if (string.IsNullOrEmpty(encodingString))
         {
@@ -87,7 +50,7 @@ public class Program
     /// <param name="decodingString">The BWT-encoded string.</param>
     /// <param name="positionOfStringEnd">The position of the last original string's symbol in the encoded string.</param>
     /// <returns>The decoded original string.</returns>
-    public static string Decoder(string decodingString, int positionOfStringEnd)
+    public static string Decode(string decodingString, int positionOfStringEnd)
     {
         if (string.IsNullOrEmpty(decodingString))
         {

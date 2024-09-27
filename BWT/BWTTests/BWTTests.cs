@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System;
-using BWT;
+using BurrowsWheelerTransform;
 namespace BWTTests;
 
 [TestFixture]
@@ -23,13 +23,13 @@ public class BWTEncoderDecoderTests
     public void EncodeDecode_ShouldReturnOriginalString(string testString)
     {
         // Arrange
-        (string encodedString, int positionOfStringEnd) = Program.Encoder(testString);
+        (string encodedString, int positionOfStringEnd) = Transform.Encode(testString);
 
         // Act
-        string decodedString = Program.Decoder(encodedString, positionOfStringEnd);
+        string decodedString = Transform.Decode(encodedString, positionOfStringEnd);
 
         // Assert
-        Assert.AreEqual(testString, decodedString, $"Failed for input string: {testString}");
+        Assert.That(testString, Is.EqualTo(decodedString), $"Failed for input string: {testString}");
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class BWTEncoderDecoderTests
     public void Encoder_ShouldReturnCorrectPositionOfStringEnd(string testString)
     {
         // Arrange
-        (string encodedString, int positionOfStringEnd) = Program.Encoder(testString);
+        (string encodedString, int positionOfStringEnd) = Transform.Encode(testString);
 
         // Act
         // No action needed, the assertion uses the returned value.
@@ -57,12 +57,12 @@ public class BWTEncoderDecoderTests
     public void Decoder_ShouldThrowExceptionForInvalidPositionOfStringEnd(string testString)
     {
         // Arrange
-        (string encodedString, int _) = Program.Encoder(testString);
+        (string encodedString, int _) = Transform.Encode(testString);
         int invalidPosition = testString.Length; // Out of bounds
 
         // Act
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => Program.Decoder(encodedString, invalidPosition));
+        Assert.Throws<ArgumentOutOfRangeException>(() => Transform.Decode(encodedString, invalidPosition));
     }
 
     /// <summary>
@@ -76,6 +76,6 @@ public class BWTEncoderDecoderTests
         int positionOfStringEnd = 0; // Valid position for an empty string
 
         // Añt
-        Assert.Throws<ArgumentException>(() => Program.Decoder(emptyString, positionOfStringEnd));
+        Assert.Throws<ArgumentException>(() => Transform.Decode(emptyString, positionOfStringEnd));
     }
 }
