@@ -8,26 +8,17 @@ public class Operand : ITree
     /// <summary>
     /// Value of operand.
     /// </summary>
-    internal int Value;
+    private int Value;
 
-    public Operand(int value)
-    {
-        this.Value = value;
-    }
+    public Operand(int value) => Value = value;
 
     /// <summary>
     /// Returns value of operand.
     /// </summary>
-    public double Calculate()
-    {
-        return Value;
-    }
+    public double Calculate() => Value;
 
     /// <summary>
     /// Prints value of operand.
     /// </summary>
-    public void Print()
-    {
-        Console.Write($"{Value} ");
-    }
+    public void Print() => Console.Write($"{Value} ");
 }

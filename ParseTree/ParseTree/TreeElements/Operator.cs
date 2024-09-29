@@ -8,12 +8,12 @@ public abstract class Operator : ITree
     /// <summary>
     /// Left child of operator subtree.
     /// </summary>
-    internal ITree LeftChild;
+    protected internal ITree LeftChild;
 
     /// <summary>
     /// Right child of operator subtree.
     /// </summary>
-    internal ITree RightChild;
+    protected internal ITree RightChild;
 
     /// <summary>
     /// Abstract method that calculates value of this subtree.
