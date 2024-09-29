@@ -54,5 +54,6 @@ public class TrieTests
         Assert.That(actual, Is.EqualTo(3));
         Assert.IsTrue(trie.Contains("carrier"));
         Assert.IsFalse(trie.Contains("carr"));
+        Assert.IsTrue(trie.Add(""));
     }
 }

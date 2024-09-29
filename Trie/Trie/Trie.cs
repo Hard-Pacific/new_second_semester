@@ -1,7 +1,8 @@
-﻿using System;
+﻿namespace MyTrie;
+
+using System;
 using System.Collections.Generic;
 
-namespace MyTrie;
 /// <summary>
 /// Trie data structure
 /// </summary>
@@ -18,8 +19,6 @@ public class Trie
         public Vertex()
         {
             this.Next = new Dictionary<char, Vertex>();
-            this.AmountOfWordsWithSamePrefix = 0;
-            this.IsTerminal = false;
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ public class Trie
     {
         if (element == null)
         {
-            ArgumentNullException.ThrowIfNull(nameof(element));
+            ArgumentNullException.ThrowIfNull(element, nameof(element));
         }
 
         if (Contains(element))
@@ -91,7 +90,7 @@ public class Trie
     {
         if (element == null)
         {
-            throw new ArgumentNullException("Element can't be null!");
+            ArgumentNullException.ThrowIfNull(element, nameof(element));
         }
 
         var currentVertex = root;
@@ -156,7 +155,7 @@ public class Trie
     /// </summary>
     /// <param name="prefix">Some string that is a prefix.</param>
     /// <returns>Amount of elements in trie that start with this prefix.</returns>
-    public int HowManyStartWithPrefix(string? prefix)
+    public int HowManyStartWithPrefix(string prefix)
     {
         if (prefix == null)
         {
